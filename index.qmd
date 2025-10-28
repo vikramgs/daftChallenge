@@ -106,7 +106,40 @@ Your task is to recreate these three historical DAGs using DAFT, making them vis
 # Your code here - recreate the DAG from the reference image
 # Use DAFT to create nodes and edges that match the visual structure
 # Customize colors and styling to make it professional
+
+import daft
+import matplotlib.pyplot as plt
+
+# Create a PGM object
+pgm = daft.PGM(dpi=150, alternate_style="outer")
+
+# Example of a professionally styled node
+pgm.add_node("Lemons", "Lemons\nIntake" + r" $(X)$", 1, 1, aspect = 3, scale = 1.5,
+             plot_params={
+                 'facecolor': 'lightgreen', 
+                 'edgecolor': 'darkgreen', 
+                 'linewidth': 2,
+                 'alpha': 0.8,
+             })
+pgm.add_node("Scruvy", "Scruvy\n"+r" $(Y)$", 4.5, 1, aspect = 3, scale = 1.5,
+             plot_params={
+                 'facecolor': 'thistle', 
+                 'edgecolor': 'purple', 
+                 'linewidth': 2,
+                 'alpha': 0.8,
+             })
+pgm.add_edge("Lemons", "Scruvy")
+
+pgm.render()
+
+
 ```
+
+::: {.callout-note}
+## Analysis of DAG 1 (1747 Understanding)
+
+This simple DAG captures James Lind's 1747 discovery that lemons prevent scurvy. The two-node structure (**Lemons** → **Scurvy**) is correct in its conclusion but incomplete in its mechanism. While Lind's experiments proved lemons were effective, the lack of understanding about *why* they worked led to the cure being lost for over 150 years when people mistakenly replaced lemons with other acidic foods that lacked the critical component—Vitamin C. This demonstrates the importance of understanding complete causal mechanisms, not just correlations.
+:::
 
 ### DAG 2: The Misguided Belief (Wrong Understanding)
 
@@ -127,7 +160,47 @@ Your task is to recreate these three historical DAGs using DAFT, making them vis
 # Your code here - recreate the DAG from the reference image
 # This DAG should show the incorrect causal chain
 # Use different colors or styling to indicate this is the wrong understanding
+
+import daft
+import matplotlib.pyplot as plt
+
+# Create a PGM object
+pgm = daft.PGM(dpi=150, alternate_style="outer")
+
+# Example of a professionally styled node
+pgm.add_node("Acid", "Acid\nIntake" + r" $(X)$", 2.5, 4, aspect = 3, scale = 1.5,
+             plot_params={
+                 'facecolor': 'lightgreen', 
+                 'edgecolor': 'darkgreen', 
+                 'linewidth': 2,
+                 'alpha': 0.8,
+             })
+pgm.add_node("Bacteria_in_food", "Bacteria in Food\n"+r" $(Y)$", 2.5, 2.5, aspect = 3, scale = 1.5,
+             plot_params={
+                 'facecolor': 'lightcoral', 
+                 'edgecolor': 'darkred', 
+                 'linewidth': 2,
+                 'alpha': 0.8,
+             })
+pgm.add_node("Scurvy", "Get Scruvy\n"+r" $(Z)$", 2.5, 1, aspect = 3, scale = 1.5,
+             plot_params={
+                 'facecolor': 'thistle', 
+                 'edgecolor': 'purple', 
+                 'linewidth': 2,
+                 'alpha': 0.8,
+             })             
+pgm.add_edge("Acid", "Bacteria_in_food")
+pgm.add_edge("Bacteria_in_food", "Scurvy")
+
+pgm.render()
+
 ```
+
+::: {.callout-note}
+## Analysis of DAG 2 (Misguided Belief)
+
+This DAG represents the unfortunate misunderstanding that emerged when people lost sight of Lind's original findings. The three-node structure (**Acid** → **Bacteria in Food** → **Get Scurvy**) introduced an intermediate causal step—the belief that acid killed harmful bacteria in food. While this model attempted to explain the mechanism that DAG 1 lacked, it proposed the *wrong* mechanism. This error proved disastrous: people began using limes (cheaper but with less Vitamin C) or vinegar (acidic but no Vitamin C), leading to scurvy's return after it had been largely eliminated. This DAG demonstrates how a mechanistic explanation can be more harmful than no explanation at all when that mechanism is incorrect—a cautionary tale about verifying causal assumptions before applying them in practice.
+:::
 
 ### DAG 3: The 1928 Understanding (Complete and Correct)
 
@@ -148,7 +221,47 @@ Your task is to recreate these three historical DAGs using DAFT, making them vis
 # Your code here - recreate the DAG from the reference image
 # This should be the most complete and accurate representation
 # Use professional styling that would be suitable for a scientific publication
+
+import daft
+import matplotlib.pyplot as plt
+
+# Create a PGM object
+pgm = daft.PGM(dpi=150, alternate_style="outer")
+
+# Example of a professionally styled node
+pgm.add_node("Vitamin_C", "Vitamin C\nIntake" + r" $(X)$", 2.5, 4, aspect = 3, scale = 1.5,
+             plot_params={
+                 'facecolor': 'lightblue', 
+                 'edgecolor': 'darkblue', 
+                 'linewidth': 2,
+                 'alpha': 0.8,
+             })
+pgm.add_node("Collagen_Synthesis", "Collagen Synthesis\n"+r" $(Y)$", 2.5, 2.5, aspect = 3, scale = 1.5,
+             plot_params={
+                 'facecolor': 'lightcoral', 
+                 'edgecolor': 'darkred', 
+                 'linewidth': 2,
+                 'alpha': 0.8,
+             })
+pgm.add_node("Scurvy", "No Scruvy\n"+r" $(Z)$", 2.5, 1, aspect = 3, scale = 1.5,
+             plot_params={
+                 'facecolor': 'lightgreen', 
+                 'edgecolor': 'darkgreen', 
+                 'linewidth': 2,
+                 'alpha': 0.8,
+             })             
+pgm.add_edge("Vitamin_C", "Collagen_Synthesis")
+pgm.add_edge("Collagen_Synthesis", "Scurvy")
+
+pgm.render()
+
 ```
+
+::: {.callout-note}
+## Analysis of DAG 3 (1928 Understanding - Complete and Correct)
+
+This DAG represents the complete and accurate understanding achieved in 1928. The three-node structure (**Vitamin C** → **Collagen Synthesis** → **No Scurvy**) correctly identifies both the causal agent (Vitamin C) and the biological mechanism (collagen synthesis). This model synthesizes the insights of the previous two DAGs: it provides the mechanistic depth that DAG 1 lacked while correcting the flawed mechanism proposed in DAG 2. It explains why lemons worked (high Vitamin C content) and why other acidic foods didn't (they lacked Vitamin C). This complete causal story enabled proper scurvy prevention that could be reliably applied and maintained. The 1928 DAG demonstrates the power of understanding complete causal mechanisms—it's both practically effective and scientifically rigorous, serving as a model for how to build robust causal models that stand the test of time.
+:::
 
 ## Student Requirements Section: Mastering DAFT Visualization {#student-analysis-section}
 
