@@ -8,6 +8,7 @@ execute:
   eval: true
 ---
 
+<!-- 
 # 🎨 DAFT Package Challenge - Recreating the Scurvy DAGs
 
 ::: {.callout-important}
@@ -43,10 +44,11 @@ Scurvy was a devastating disease that affected sailors on long voyages. The cure
 ## Environment Setup
 
 First, let's install the DAFT package and set up our environment:
+-->
 
 ```{python}
 #| label: setup-environment
-#| echo: true
+#| echo: false
 #| message: false
 #| warning: false
 
@@ -61,14 +63,14 @@ import numpy as np
 plt.rcParams['figure.dpi'] = 150
 plt.rcParams['savefig.dpi'] = 300
 
-print("DAFT package imported successfully!")
-print("Ready to create beautiful DAGs!")
+# print("DAFT package imported successfully!")
+# print("Ready to create beautiful DAGs!")
 ```
-
+<!--
 ::: {.callout-note}
 ## 💡 Understanding DAFT
 
-**DAFT (Directed Acyclic Factor Graphs Toolkit)** is a Python package for creating probabilistic graphical models. It's particularly useful for:
+ **DAFT (Directed Acyclic Factor Graphs Toolkit)** is a Python package for creating probabilistic graphical models. It's particularly useful for:
 
 - Creating Directed Acyclic Graphs (DAGs)
 - Visualizing causal relationships
@@ -81,7 +83,7 @@ print("Ready to create beautiful DAGs!")
 - **Edges:** Show relationships between variables
 - **Plates:** Indicate repeated structures
 - **Styling:** Customize colors, shapes, and formatting
-:::
+::: -->
 
 ## The Three DAGs: Your Mission
 
@@ -98,7 +100,7 @@ Your task is to recreate these three historical DAGs using DAFT, making them vis
 
 ```{python}
 #| label: dag-1-1747
-#| echo: true
+#| echo: false
 
 
 
@@ -116,7 +118,7 @@ pgm.add_node("Lemons", "Lemons\nIntake" + r" $(X)$", 1, 1, aspect = 3, scale = 1
                  'linewidth': 2,
                  'alpha': 0.8,
              })
-pgm.add_node("Scruvy", "Scruvy\n"+r" $(Y)$", 4.5, 1, aspect = 3, scale = 1.5,
+pgm.add_node("Scruvy", "Scruvy\n"+r" $(Y)$", 4, 1, aspect = 3, scale = 1.5,
              plot_params={
                  'facecolor': 'thistle', 
                  'edgecolor': 'purple', 
@@ -147,7 +149,7 @@ This simple DAG captures James Lind's 1747 discovery that lemons prevent scurvy.
 
 ```{python}
 #| label: dag-2-misguided
-#| echo: true
+#| echo: false
 
 
 
@@ -158,7 +160,7 @@ import matplotlib.pyplot as plt
 pgm = daft.PGM(dpi=150, alternate_style="outer")
 
 # Example of a professionally styled node
-pgm.add_node("Acid", "Acid\nIntake" + r" $(X)$", 2.5, 4, aspect = 3, scale = 1.5,
+pgm.add_node("Acid", "Acid\nIntake" + r" $(X)$", 1.5, 3.75, aspect = 3, scale = 1.5,
              plot_params={
                  'facecolor': 'orange', 
                  'edgecolor': '#ff6600', 
@@ -172,7 +174,7 @@ pgm.add_node("Bacteria_in_food", "Bacteria in Food\n"+r" $(Y)$", 2.5, 2.5, aspec
                  'linewidth': 2,
                  'alpha': 0.8,
              })
-pgm.add_node("Scurvy", "Get Scruvy\n"+r" $(Z)$", 2.5, 1, aspect = 3, scale = 1.5,
+pgm.add_node("Scurvy", "Get Scruvy\n"+r" $(Z)$", 3.5, 1.25, aspect = 3, scale = 1.5,
              plot_params={
                  'facecolor': 'thistle', 
                  'edgecolor': 'purple', 
@@ -203,7 +205,7 @@ This DAG represents the unfortunate misunderstanding that emerged when people lo
 
 ```{python}
 #| label: dag-3-1928
-#| echo: true
+#| echo: false
 
 
 import daft
@@ -213,21 +215,21 @@ import matplotlib.pyplot as plt
 pgm = daft.PGM(dpi=150, alternate_style="outer")
 
 # Example of a professionally styled node
-pgm.add_node("Vitamin_C", "Vitamin C\nIntake" + r" $(X)$", 2.5, 4, aspect = 3, scale = 1.5,
+pgm.add_node("Vitamin_C", "Vitamin C\nIntake" + r" $(X)$", 1.5, 3.5, aspect = 3, scale = 1.5,
              plot_params={
                  'facecolor': 'palegoldenrod', 
                  'edgecolor': '#daa520', 
                  'linewidth': 2,
                  'alpha': 0.8,
              })
-pgm.add_node("Collagen_Synthesis", "Collagen Synthesis\n"+r" $(Y)$", 2.5, 2.5, aspect = 3, scale = 1.5,
+pgm.add_node("Collagen_Synthesis", "Collagen Synthesis\n"+r" $(Y)$", 2.5, 2.25, aspect = 3, scale = 1.5,
              plot_params={
                  'facecolor': 'lightblue', 
                  'edgecolor': 'darkblue', 
                  'linewidth': 2,
                  'alpha': 0.8,
              })
-pgm.add_node("Scurvy", "No Scruvy\n"+r" $(Z)$", 2.5, 1, aspect = 3, scale = 1.5,
+pgm.add_node("Scurvy", "No Scruvy\n"+r" $(Z)$", 3.5, 1, aspect = 3, scale = 1.5,
              plot_params={
                  'facecolor': 'plum', 
                  'edgecolor': 'purple', 
@@ -247,7 +249,7 @@ pgm.render()
 This DAG represents the complete and accurate understanding achieved in 1928. The three-node structure (**Vitamin C** → **Collagen Synthesis** → **No Scurvy**) correctly identifies both the causal agent (Vitamin C) and the biological mechanism (collagen synthesis). This model synthesizes the insights of the previous two DAGs: it provides the mechanistic depth that DAG 1 lacked while correcting the flawed mechanism proposed in DAG 2. It explains why lemons worked (high Vitamin C content) and why other acidic foods didn't (they lacked Vitamin C). This complete causal story enabled proper scurvy prevention that could be reliably applied and maintained. The 1928 DAG demonstrates the power of understanding complete causal mechanisms—it's both practically effective and scientifically rigorous, serving as a model for how to build robust causal models that stand the test of time.
 :::
 
-## Student Requirements Section: Mastering DAFT Visualization {#student-analysis-section}
+<!-- ## Student Requirements Section: Mastering DAFT Visualization {#student-analysis-section}
 
 **Your Task:** Demonstrate your mastery of DAFT through comprehensive recreation of the three scurvy DAGs and thoughtful analysis. The bulk of your grade comes from successfully recreating the DAGs and answering the discussion questions.
 
@@ -274,11 +276,11 @@ This DAG represents the complete and accurate understanding achieved in 1928. Th
 
 ### Example: Professional DAFT Node Styling
 
-Here's an example (see @fig-example-node) of how to create a professionally styled node in DAFT with nice captions and references to the figure:
+Here's an example (see @fig-example-node) of how to create a professionally styled node in DAFT with nice captions and references to the figure: 
 
 ```{python}
 #| label: fig-example-node
-#| echo: true
+#| echo: false
 #| fig-cap: "Example: Professional DAFT Node Styling"
 
 import daft
@@ -377,5 +379,5 @@ pgm.render()
 - [ ] All DAG recreations completed with professional quality
 - [ ] Erase everything but the story of scurvy and the three DAGs (make it a nice concise narrative about scurvy)
 
-
+-->
 
